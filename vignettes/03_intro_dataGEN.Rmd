@@ -1,0 +1,40 @@
+---
+title: "Introduction to using `denGEN()`"
+author: "Sandra MacFadyen"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to using `denGEN()`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+if (requireNamespace("terra", quietly = TRUE) && requireNamespace("ggplot2", quietly = TRUE)) {
+  library(terra)
+  library(ggplot2)
+  library(dplyr)
+  } else {
+    stop("The packages 'terra', 'ggplot2' and 'dplyr' are required for this example.")
+  }
+
+library(sunBcubed)
+```
+
+This is an introduction to using the `dataGEN` function developed by Stellenbosch BioMath for the b-cubed project.
+
+The function prepares data from other cubes and accessible datasets as follows:
+
+1. Prepare data from other cubes and accessible datasets
+2. Include details for spatial extent e.g. spatial polygons, shapefiles, squares (corner coordinates)
+3. Include details for spatial resolution, specified and default
+4. Ensure alien status of identified species is listed (we need to make a decision on species list completeness, considering other cubes and SDM cubes, etc.)
+5. Include details for temporal range
+6. Allow for different options e.g. option = 1, 2; 1 for `dissim()` and 2 for `invasib()`
+7. Return, site by species, site by xyt, site by env, site by site distance; species by trait, species by species phylogenetic distance, matrices (and default setting if null)

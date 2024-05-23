@@ -1,0 +1,4 @@
+^renv$
+^renv\.lock$
+^sunBcubed\.Rproj$
+^\.Rproj\.user$

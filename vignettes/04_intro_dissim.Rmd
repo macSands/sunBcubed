@@ -1,0 +1,38 @@
+---
+title: "Introduction to using `dissim()`"
+author: "Sandra MacFadyen"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to using `dissim()`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+if (requireNamespace("terra", quietly = TRUE) && requireNamespace("ggplot2", quietly = TRUE)) {
+  library(terra)
+  library(ggplot2)
+  library(dplyr)
+  } else {
+    stop("The packages 'terra', 'ggplot2' and 'dplyr' are required for this example.")
+  }
+
+library(sunBcubed)
+```
+
+This is an introduction to using the `dissim` function developed by Stellenbosch BioMath for the b-cubed project.
+
+The `dissim()` function creates the dissimialrity cube as follows:
+
+1. Takes data created using the `dataGEN()` function
+2. `dataGEN` option 1 returns metrics of spatial and temporal turnovers. There needs to be practical solution to visualise higher-order zeta (order 1 richness [related Hill numbers], order 2 beta with different metrics)
+3. Return, visualisation options [maps GeoTIFFs], site by site matrices, per temporal unit. Temporal hotspots, statistics tables, PCA/NMDS and CCA visualisation.
+4. Include functional/phylogenetic dissimilarity?
+5. Send outputs to Zenodo

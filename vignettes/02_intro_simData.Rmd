@@ -1,0 +1,79 @@
+---
+title: "Introduction to using `simData()`"
+author: "Sandra MacFadyen"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to using `simData()`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+if (requireNamespace("terra", quietly = TRUE) && requireNamespace("ggplot2", quietly = TRUE)) {
+  library(terra)
+  library(ggplot2)
+  library(dplyr)
+  } else {
+    stop("The packages 'terra', 'ggplot2' and 'dplyr' are required for this example.")
+  }
+
+library(sunBcubed)
+```
+
+#### Overview
+This vignette provides an introduction to the `simData()` function from the `sunBcubed` package. The function is designed to simulate ecological data across a spatial and temporal grid, which can be used for testing spatial analysis methods or for educational purposes.
+
+#### Simulating Data
+We will start by simulating a basic dataset with default parameters.
+
+```{r}
+# Set seed for reproducibility
+set.seed(123)
+
+# Simulate data
+sim_data = simData(returnOption = 1, plot = FALSE)
+head(sim_data)
+```
+
+#### Visualizing Data
+If you want to visualize the spatial distribution of species counts, you can set the plot parameter to `TRUE`. Here we demonstrate this with `returnOption = 1`, which outputs a summary table of species by site and plots the data.
+
+```{r plot-example, fig.width=7, fig.height=4}
+# Generate data and plot
+site_species = simData(returnOption = 1, plot = TRUE)
+head(site_species)
+```
+
+#### Advanced Usage
+The `simData()` function can also return a `SpatRaster` object or a distance matrix. Here's how to use these options:
+
+```{r}
+# Generate a SpatRaster object
+raster_data = simData(returnOption = 2, plot = FALSE)
+raster_data
+
+# Calculate and return a distance matrix
+distance_matrix = simData(returnOption = 3, plot = FALSE)
+head(distance_matrix)
+```
+
+#### Saving Data to the Global Environment
+If you need to access the raw grid data for further analysis, you can save it to the global environment using the globalSave option.
+
+```{r}
+site_species = simData(returnOption = 1, plot = FALSE, globalSave = TRUE)
+# head(site_species)
+
+# Accessing the grid data from global environment
+head(simData_grid)
+```
+
+#### Conclusion
+This vignette has introduced the basic functionalities of the `simData()` function. For more detailed information, please refer to the package documentation.

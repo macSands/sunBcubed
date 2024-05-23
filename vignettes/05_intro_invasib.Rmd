@@ -1,0 +1,40 @@
+---
+title: "Introduction to using `invasib()`"
+author: "Sandra MacFadyen"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to using `invasib()`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+if (requireNamespace("terra", quietly = TRUE) && requireNamespace("ggplot2", quietly = TRUE)) {
+  library(terra)
+  library(ggplot2)
+  library(dplyr)
+  } else {
+    stop("The packages 'terra', 'ggplot2' and 'dplyr' are required for this example.")
+  }
+
+library(sunBcubed)
+```
+
+This is an introduction to using the `invasib` function developed by Stellenbosch BioMath for the b-cubed project.
+
+The `invasib()` function creates the invasibility cube as follows:
+
+1. Takes data created using the `dataGEN()` function
+2. Calculates trait distance matrix
+3. Allow user to specify SD of interaction kernel (could be assessed based on trait distance histogram or from 0 to max distance)
+4. Allow user to specify trait axes (could be PCA axes), incl. phylo?
+5. Community trait profile, invasibility figure, trait specific invasiveness(function)
+6. Return, invasive(trait) function, visual
+7. Send outputs to Zenodo
